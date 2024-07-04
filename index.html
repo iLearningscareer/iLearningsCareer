@@ -1,185 +1,164 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-    <title>iLearnings Internship Program</title>
+<meta charset="UTF-8">
+<title>iLearnings Internship Program</title>
+<style>
+    body {
+        background-color: #a8d5e5;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .header {
+        padding: 10px;
+    }
+    .header img {
+        max-width: 10%;
+        height: auto;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin-top: 10px;
+        text-align: left;
+        display: block;
+    }
+    .required::after {
+        content: " *";
+        color: red;
+    }
+    input[type=text], input[type=email], textarea, select {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-bottom: 20px;
+    }
+    .checkbox-group label {
+        margin: 0;
+        margin-right: 10px;
+    }
+    input[type=checkbox] {
+        margin: 2px;
+    }
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    input[type=text]:hover, input[type=email]:hover, textarea:hover, select:hover {
+        border-color: #4CAF50;
+        transition: border-color 0.3s;
+    }
+    input[type=submit], .checkbox-group label, .container h2 {
+        cursor: pointer;
+    }
+    input[type=submit]:hover {
+        background-color: #45a049;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+        transition: all 0.3s;
+    }
+    input[type=text]:focus, input[type=email]:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+    .checkbox-group label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    input[type=checkbox] {
+        margin-right: 10px;
+    }
+    textarea {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+</style>
+<script>
+    function validateForm() {
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        const phonePattern = /^\d{10}$/;
 
-    <style>
-        body {
-            background-color: #a8d5e5;
-            font-family: Arial, sans-serif;
-            text-align: center;
+        if (!emailPattern.test(email) || !email.endsWith('.com')) {
+            alert("Please enter a valid email address that ends with '.com'.");
+            return false;
         }
 
-        .header {
-            padding: 10px;
+        if (!phonePattern.test(phone)) {
+            alert("Please enter a valid phone number.");
+            return false;
         }
 
-        .header img {
-            max-width: 10%;
-            height: auto;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container h2 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-top: 10px;
-            text-align: left;
-            display: block;
-        }
-
-        .required::after {
-            content: " *";
-            color: red;
-        }
-
-        input[type=text], input[type=email], textarea, select {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            margin-bottom: 20px;
-        }
-
-        .checkbox-group label {
-            margin: 0;
-            margin-right: 10px;
-        }
-
-        input[type=checkbox] {
-            margin: 2px;
-        }
-
-        input[type=submit] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 20px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
-
-        input[type=text]:hover, input[type=email]:hover, textarea, select:hover {
-            border-color: #4CAF50;
-            transition: border-color 0.3s;
-        }
-
-        input[type=submit], .checkbox-group label, .container h2 {
-            cursor: pointer;
-        }
-
-        input[type=submit]:hover {
-            background-color: #45a049;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transform: translateY(-2px);
-            transition: all 0.3s;
-        }
-
-        input[type=text]:focus, input[type=email]:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-        }
-
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
-
-        input[type=checkbox] {
-            margin-right: 10px;
-        }
-
-        textarea {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
-    </style>
-
-    <script>
-        function validateForm() {
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            const phonePattern = /^\d{10}$/;
-
-            if (!emailPattern.test(email) || !email.endsWith('.com')) {
-                alert("Please enter a valid email address that ends with '.com'.");
-                return false;
-            }
-
-            if (!phonePattern.test(phone)) {
-                alert("Please enter a valid phone number.");
-                return false;
-            }
-
-            return true;
-        }
-    </script>
+        return true;
+    }
+</script>
 </head>
 <body>
-    <div class="header">
-        <a href="https://live.ilearningscareer.com/" target="_blank">
-            <img src="https://d502jbuhuh9wk.cloudfront.net/logos/650c295ce4b081959b005cb2.png?v=1" alt="iLearnings Logo">
-        </a>
-    </div>
-    <div class="container">
-        <h2>iLearnings Internship Program</h2>
-        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D5g00000LOz8D" method="POST" onsubmit="return validateForm()">
-            <!-- Hidden Inputs -->
-            <input type="hidden" name="oid" value="00D5g00000LOz8D">
-            <input type=hidden name="retURL" value="http://ilearningscareer.github.io/ilearningsThankYouPage/">
-            <input id="lead_source" name="lead_source" type="hidden" value="Web" />
-            <!-- Form Fields -->
-            <label for="first_name" class="required">First Name</label>
-            <input id="first_name" maxlength="40" name="first_name" type="text" required>
+<div class="header">
+    <a href="https://live.ilearningscareer.com/" target="_blank">
+        <img src="https://d502jbuhuh9wk.cloudfront.net/logos/650c295ce4b081959b005cb2.png?v=1" alt="iLearnings Logo">
+    </a>
+</div>
+<div class="container">
+    <h2>iLearnings Internship Program</h2>
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D5g00000LOz8D" method="POST" onsubmit="return validateForm()">
+        <!-- Hidden Inputs -->
+        <input type="hidden" name="oid" value="00D5g00000LOz8D">
+        <input type="hidden" name="retURL" value="http://ilearningscareer.github.io/ilearningsThankYouPage/">
+        <input id="lead_source" name="lead_source" type="hidden" value="Web">
+        <!-- Form Fields -->
+        <label for="first_name" class="required">First Name</label>
+        <input id="first_name" maxlength="40" name="first_name" type="text" required>
 
-            <label for="last_name" class="required">Last Name</label>
-            <input id="last_name" maxlength="80" name="last_name" type="text" required>
+        <label for="last_name" class="required">Last Name</label>
+        <input id="last_name" maxlength="80" name="last_name" type="text" required>
 
-            <label for="email" class="required">Email</label>
-            <input id="email" maxlength="80" name="email" type="email" required>
+        <label for="email" class="required">Email</label>
+        <input id="email" maxlength="80" name="email" type="email" required>
 
-            <label for="phone" class="required">Phone</label>
-            <input id="phone" maxlength="40" name="phone" size="20" type="text" required>
+        <label for="phone" class="required">Phone</label>
+        <input id="phone" maxlength="40" name="phone" size="20" type="text" required>
 
-            <label for="country_code" class="required">Country</label><select  id="country_code" name="country_code" required><option value="">--None--</option><option value="AF">Afghanistan</option>
+       <label for="country_code" class="required">Country</label><select  id="country_code" name="country_code" required><option value="">--None--</option><option value="AF">Afghanistan</option>
 <option value="AX">Aland Islands</option>
 <option value="AL">Albania</option>
 <option value="DZ">Algeria</option>
@@ -415,28 +394,25 @@
 <option value="ZM">Zambia</option>
 <option value="ZW">Zimbabwe</option>
 </select>
+            <!-- Add other options here -->
+        </select>
 
+        <label for="courses" class="required">Courses</label>
+        <div class="checkbox-group" id="courses">
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="Admin">Admin</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="Development+LWC">Development+LWC</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="LWC">LWC</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="Business Analyst">Business Analyst</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="CPQ">CPQ</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="SFMC">SFMC</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="Python & AI">Python & AI</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="Java">Java</label>
+            <label><input type="checkbox" name="00N5g00000iX0p1" value="Other">Other</label>
+        </div>
 
-
-            <label for="courses" class="required">Courses</label>
-            <div class="checkbox-group" id="courses">
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="Admin">Admin</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="Development+LWC">Development+LWC</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="LWC">LWC</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="Business Analyst">Business Analyst</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="CPQ">CPQ</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="SFMC">SFMC</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="Python & AI">Python & AI</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="Java">Java</label>
-                <label><input type="checkbox" name="00N5g00000iX0p1" value="Other">Other</label>
-            </div>
-
-            <!-- Submit Button -->
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+</div>
 </body>
 </html>
-
-
-
