@@ -128,6 +128,12 @@
             return false;
         }
 
+        // Collect selected courses
+        const selectedCourses = Array.from(document.querySelectorAll('input[name="courses"]:checked'))
+                                    .map(checkbox => checkbox.value)
+                                    .join('; ');
+        document.getElementById('selected_courses').value = selectedCourses;
+
         return true;
     }
 </script>
@@ -159,7 +165,7 @@
         <label for="phone" class="required">Phone</label>
         <input id="phone" maxlength="40" name="phone" size="20" type="text" required>
 
-       <label for="country_code" class="required">Country</label><select  id="country_code" name="country_code" required><option value="">--None--</option><option value="AF">Afghanistan</option>
+        <label for="country_code" class="required">Country</label><select  id="country_code" name="country_code" required><option value="">--None--</option><option value="AF">Afghanistan</option>
 <option value="AX">Aland Islands</option>
 <option value="AL">Albania</option>
 <option value="DZ">Algeria</option>
@@ -395,21 +401,22 @@
 <option value="ZM">Zambia</option>
 <option value="ZW">Zimbabwe</option>
 </select>
-            <!-- Add other options here -->
-        </select>
 
-        <label for="courses" class="required">Course Enrolled In (Choose multiple in case of multiple courses)</label>
+        <label for="courses" class="required">Course Enrolled In (Choose multiple in case of multiple courses)</label>
         <div class="checkbox-group" id="courses">
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="Admin">Salesforce Admin</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="Development">Salesforce Development+LWC</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="Salesforce LWC">Salesforce LWC</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="Business Analyst">Salesforce Business Analyst</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="CPQ">Salesforce CPQ</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="SFMC">Salesforce Marketing Cloud</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="Python & AI">Python & AI</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="Java">Java</label>
-            <label><input type="checkbox" name="00N5g00000iX0p1" value="Other">Other</label>
+            <label><input type="checkbox" name="courses" value="Salesforce Admin">Salesforce Admin</label>
+            <label><input type="checkbox" name="courses" value="Salesforce Development+LWC">Salesforce Development+LWC</label>
+            <label><input type="checkbox" name="courses" value="Salesforce LWC">Salesforce LWC</label>
+            <label><input type="checkbox" name="courses" value="Salesforce Business Analyst">Salesforce Business Analyst</label>
+            <label><input type="checkbox" name="courses" value="Salesforce CPQ">Salesforce CPQ</label>
+            <label><input type="checkbox" name="courses" value="Salesforce Marketing Cloud">Salesforce Marketing Cloud</label>
+            <label><input type="checkbox" name="courses" value="Python & AI">Python & AI</label>
+            <label><input type="checkbox" name="courses" value="Java">Java</label>
+            <label><input type="checkbox" name="courses" value="Other">Other</label>
         </div>
+
+        <!-- Hidden field to store selected courses -->
+        <input type="hidden" id="selected_courses" name="00N5g00000iX0p1" value="">
 
         <!-- Submit Button -->
         <input type="submit" value="Submit">
